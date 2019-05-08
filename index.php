@@ -1,6 +1,10 @@
+<?php
+include_once ("app/config.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -178,21 +182,29 @@
 
                 <!-- Popular Item Slide -->
                 <div class="papular-block row">
+                    <?php
+                    $items = $db->query("SELECT * FROM item");
 
-                    <!-- Item -->
-                    <div class="col-md-3">
-                        <div class="item">
-                            <!-- Item img -->
-                            <div class="item-img"> <img class="img-1" src="images/product-2-1.jpg" alt="" > <img class="img-2" src="images/product-2.jpg" alt="" >
+                    foreach ($items AS  $item) {
+                        ?>
+                        <!-- Item -->
+                        <div class="col-md-3">
+                            <div class="item">
+                                <!-- Item img -->
+                                <div class="item-img"><img class="img-1" src="images/product-2-1.jpg" alt=""> <img
+                                            class="img-2" src="images/product-2.jpg" alt="">
 
-                            </div>
-                            <!-- Item Name -->
-                            <div class="item-name"> <a href="#.">stone cup</a>
-                                <p>Lorem ipsum dolor sit amet</p>
-                            </div>
-                            <!-- Price -->
-                            <span class="price"><small>$</small>299</span> </div>
-                    </div>
+                                </div>
+                                <!-- Item Name -->
+                                <div class="item-name"><a href="#."><?php echo $item['name'] . "-" . $item['color']?></a>
+                                    <p>Size : <?php echo $item['size']?></p>
+                                </div>
+                                <!-- Price -->
+                                <span class="price"><small>$</small><?php echo $item['price']?></span></div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                 </div>
 
 
@@ -243,7 +255,7 @@
                     </div>
 
                 </div>
-                
+
             </footer>
 
             <!--======= RIGHTS =========-->
